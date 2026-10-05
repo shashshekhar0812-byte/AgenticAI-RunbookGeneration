@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>This action is used to find the soft drink record based on rating.</description>
+    <environments>Default</environments>
+    <interviewLabel>Find Soft Drink Record {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Find Soft Drink Record based on rating</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Soft_Drink_Records</name>
+        <label>Get Soft Drink Records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Rating__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Rating</elementReference>
+            </value>
+        </filters>
+        <limit>
+            <numberValue>10.0</numberValue>
+        </limit>
+        <object>Soft_Drink__c</object>
+        <outputReference>Response</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Price__c</queriedFields>
+        <queriedFields>Description__c</queriedFields>
+        <queriedFields>Sugar__c</queriedFields>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Soft_Drink_Records</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Rating of soft drink mentioned by the user.</description>
+        <name>Rating</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Soft drink record found based on user rating.</description>
+        <name>Response</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Soft_Drink__c</objectType>
+    </variables>
+</Flow>

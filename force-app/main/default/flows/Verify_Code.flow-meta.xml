@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Not_Valid</name>
+        <label>Not Valid</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>isverified</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Response</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>User is not authorized</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>VALID_OTP_BY_USER</name>
+        <label>VALID OTP BY USER</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>isverified</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Response</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>User is Authorized</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Check_if_valid_OTP</name>
+        <label>Check if valid OTP</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Not_Valid</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Valid_OTP</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>authenticationkey</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>userkey</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>VALID_OTP_BY_USER</targetReference>
+            </connector>
+            <label>Valid OTP</label>
+        </rules>
+    </decisions>
+    <description>Verify the user with the system-generated code and the user code entered.</description>
+    <environments>Default</environments>
+    <interviewLabel>Verify {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Verify Code</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_if_valid_OTP</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>The key was sent from Salesforce.</description>
+        <name>authenticationkey</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Whether the user is authenticated or not.</description>
+        <name>isverified</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Authentication Message</description>
+        <name>Response</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>They Key entered by the user.</description>
+        <name>userkey</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

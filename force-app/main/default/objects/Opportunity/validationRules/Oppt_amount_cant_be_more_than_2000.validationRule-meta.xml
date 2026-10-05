@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Oppt_amount_cant_be_more_than_2000</fullName>
+    <active>true</active>
+    <description>Opportunity Amount Cannot be more than 2000</description>
+    <errorConditionFormula>Amount &gt; 2000</errorConditionFormula>
+    <errorMessage>Opportunity Amount Cannot be more than 2000</errorMessage>
+</ValidationRule>

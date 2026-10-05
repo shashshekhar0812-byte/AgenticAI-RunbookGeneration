@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtlClntAppOauthSettings xmlns="http://soap.sforce.com/2006/04/metadata">
+    <commaSeparatedOauthScopes>Api, Full, SFApiPlatform</commaSeparatedOauthScopes>
+    <externalClientApplication>L1_Support_Agent_App</externalClientApplication>
+    <isFirstPartyAppEnabled>false</isFirstPartyAppEnabled>
+    <label>L1_Support_Agent_App_oauth</label>
+    <oauthLink>00DNS00000rLr7d:888NS000002Napd</oauthLink>
+</ExtlClntAppOauthSettings>
